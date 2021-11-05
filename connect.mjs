@@ -27,12 +27,25 @@ try {
     //const stargateClient = new StargateClient(astra_uri, credentials);
     console.log("made client");
 
+
     // Create a promisified version of the client, so we don't need to use callbacks
     const promisifiedClient = promisifyStargateClient(stargateClient);
     console.log("promisified client")
     
     const authenticationMetadata = await credentials.generateMetadata({service_url: auth_endpoint});
-    
+
+    // Create a new keyspace
+    const createKeyspaceStatement = new Query();
+    createKeyspaceStatement.setCql("CREATE KEYSPACE IF NOT EXISTS test WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor' : 1};");
+
+    await promisifiedClient.executeQuery(createKeyspaceStatement, authenticationMetadata);
+
+    // Create a new table
+    const createTableStatement = new Query();
+    createTableStatement.setCql("CREATE TABLE IF NOT EXISTS test.users (key text PRIMARY KEY,value text);");
+
+    await promisifiedClient.executeQuery(createTableStatement, authenticationMetadata);
+
     // INSERT two rows/records
     // const insertOne = new BatchQuery();
     // const insertTwo = new BatchQuery();

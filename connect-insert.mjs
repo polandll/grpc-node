@@ -22,19 +22,21 @@ try {
     console.log("promisified client")
     
     const authenticationMetadata = await credentials.generateMetadata({service_url: auth_endpoint});
-   
+
     // Create a new keyspace
     const createKeyspaceStatement = new Query();
     createKeyspaceStatement.setCql("CREATE KEYSPACE IF NOT EXISTS test WITH REPLICATION = {'class' : 'SimpleStrategy', 'replication_factor' : 1};");
 
     await promisifiedClient.executeQuery(createKeyspaceStatement, authenticationMetadata);
+    console.log("made keyspace");
 
     // Create a new table
     const createTableStatement = new Query();
-    createTableStatement.setCql("CREATE TABLE IF NOT EXISTS test.users (key text PRIMARY KEY,value text);");
+    createTableStatement.setCql("CREATE TABLE IF NOT EXISTS test.users (firstname text PRIMARY KEY,lastname text);");
 
     await promisifiedClient.executeQuery(createTableStatement, authenticationMetadata);
-
+    console.log("made table");
+    
     // INSERT two rows/records
     const insertOne = new BatchQuery();
     const insertTwo = new BatchQuery();
@@ -51,30 +53,7 @@ try {
       authenticationMetadata
     );
     console.log("inserted data");
-
-    const queryString = 'SELECT firstname, lastname FROM test.users;'
-    const query = new Query();
-    query.setCql(queryString);
-    //console.log(queryString);
-
-    const response = await promisifiedClient.executeQuery(
-      query,
-      authenticationMetadata
-    );
-    console.log("select executed")
-
-    const resultSet = response.getResultSet();
-    const rows = resultSet.getRowsList(); 
-
-    for ( let i = 0; i < 2; i++) {
-      var valueToPrint = "";
-      for ( let j = 0; j < 2; j++) {
-        var value = rows[i].getValuesList()[j].getString();
-        valueToPrint += value;
-        valueToPrint += " ";
-      }
-      console.log(valueToPrint);
-    }
+    
   } catch (e) {
     console.log(e);
   }
