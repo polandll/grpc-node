@@ -54,7 +54,7 @@ try {
     // For Stargate OSS and Astra DB: Create a new table
     const createTableStatement = new Query();
     // Set the CQL statement
-    createTableStatement.setCql("CREATE TABLE IF NOT EXISTS test.users (key text PRIMARY KEY,value text);");
+    createTableStatement.setCql("CREATE TABLE IF NOT EXISTS test.users (firstname text PRIMARY KEY, lastname text);");
 
     // For Astra DB: delete authenticationMetadata from the following executeQuery statement 
     await promisifiedClient.executeQuery(
