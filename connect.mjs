@@ -11,9 +11,9 @@ try {
     const password = "cassandra";
     const stargate_uri = "localhost:8090";
 
-    // Astra DB configuration
-    //const astra_uri = "{astra-base-url}-{astra-region}.apps.astra-dev.datastax.com:443";
-    //const bearer_token = "AstraCS:xxxxxxx";
+    // Astra DB configuration   
+    //const astra_uri = "$ASTRA_CLUSTER_ID-$ASTRA_REGION.apps.astra-dev.datastax.com:443";
+    //const bearer_token = "AstraCS:xxxxx";
 
     // Set up the authenication 
     // For Stargate OSS: Create a table based auth token Stargate/Cassandra authentication using the default C* username and password
