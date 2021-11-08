@@ -6,8 +6,8 @@ import { StargateClient, StargateBearerToken, Query, Batch, BatchQuery, Response
 try {
 
     // Astra DB configuration
-    const astra_uri = "0ba933af-90c2-46e9-887a-a387ba75411b-westus2.apps.astra-dev.datastax.com:443";
-    const bearer_token = "AstraCS:YUskXkABjYztQJfTHNkOGHOI:09fa16889d7217b23b3854d3b2858a17b895ec272494a1539e47200b87567f26";
+    const astra_uri = "{astra-base-url}-{astra-region}.apps.astra-dev.datastax.com:443";
+    const bearer_token = "AstraCS:xxxxxxx";
 
     // Set up the authenication 
     // For Astra DB: Enter a bearer token for Astra, downloaded from the Astra DB dashboard
