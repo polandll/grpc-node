@@ -70,8 +70,8 @@ try {
     const insertTwo = new BatchQuery();
 
     // Set the CQL statement
-    insertOne.setCql(`INSERT INTO test.users (firstname, lastname) VALUES('Lorina', 'Poland')`);
-    insertTwo.setCql(`INSERT INTO test.users (firstname, lastname) VALUES('Doug', 'Wettlaufer')`);
+    insertOne.setCql(`INSERT INTO test.users (firstname, lastname) VALUES('Jane', 'Doe')`);
+    insertTwo.setCql(`INSERT INTO test.users (firstname, lastname) VALUES('Serge', 'Provencio')`);
 
     // Define the new batch to include the 2 insertions
     const batch = new Batch();
