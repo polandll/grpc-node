@@ -14,7 +14,7 @@ try {
     // For Stargate OSS: Create a table based auth token Stargate/Cassandra authentication using the default C* username and password
     const credentials = new StargateTableBasedToken({authEndpoint: auth_endpoint, username: username, password: password});
     
-    // console.log(credentials);
+    console.log(credentials);
 
     // Create the gRPC client
     // For Stargate OSS: passing it the address of the gRPC endpoint
@@ -57,8 +57,8 @@ try {
     const insertTwo = new BatchQuery();
 
     // Set the CQL statement
-    insertOne.setCql(`INSERT INTO test.users (firstname, lastname) VALUES('Lorina', 'Poland')`);
-    insertTwo.setCql(`INSERT INTO test.users (firstname, lastname) VALUES('Doug', 'Wettlaufer')`);
+    insertOne.setCql(`INSERT INTO test.users (firstname, lastname) VALUES('Jane', 'Doe')`);
+    insertTwo.setCql(`INSERT INTO test.users (firstname, lastname) VALUES('Serge', 'Provencio')`);
 
     // Define the new batch to include the 2 insertions
     const batch = new Batch();
